@@ -1,0 +1,45 @@
+* c:\users\mistr\esim-workspace\gray_to_bin\gray_to_bin.cir
+
+* u5  net-_u4-pad4_ net-_u4-pad5_ net-_u5-pad3_ d_xor
+* u6  net-_u5-pad3_ net-_u4-pad6_ net-_u6-pad3_ d_xor
+* u4  g2 g1 g0 net-_u4-pad4_ net-_u4-pad5_ net-_u4-pad6_ adc_bridge_3
+* u7  net-_u4-pad4_ net-_u5-pad3_ net-_u6-pad3_ b2 b1 b0 dac_bridge_3
+r1  b2 gnd esim_r
+r3  b1 gnd esim_r
+r2  b0 gnd esim_r
+v1 g2 gnd  dc 5
+v2 g1 gnd  dc 5
+v3 g0 gnd  dc 5
+* u1  g2 plot_v1
+* u2  g1 plot_v1
+* u3  g0 plot_v1
+* u8  b2 plot_v1
+* u10  b1 plot_v1
+* u9  b0 plot_v1
+a1 [net-_u4-pad4_ net-_u4-pad5_ ] net-_u5-pad3_ u5
+a2 [net-_u5-pad3_ net-_u4-pad6_ ] net-_u6-pad3_ u6
+a3 [g2 g1 g0 ] [net-_u4-pad4_ net-_u4-pad5_ net-_u4-pad6_ ] u4
+a4 [net-_u4-pad4_ net-_u5-pad3_ net-_u6-pad3_ ] [b2 b1 b0 ] u7
+* Schematic Name:                             d_xor, NgSpice Name: d_xor
+.model u5 d_xor(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_xor, NgSpice Name: d_xor
+.model u6 d_xor(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             adc_bridge_3, NgSpice Name: adc_bridge
+.model u4 adc_bridge(in_low=1.0 in_high=2.0 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_3, NgSpice Name: dac_bridge
+.model u7 dac_bridge(out_low=0.0 out_high=5.0 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+.tran 1e-00 10e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(g2)
+plot v(g1)
+plot v(g0)
+plot v(b2)
+plot v(b1)
+plot v(b0)
+.endc
+.end

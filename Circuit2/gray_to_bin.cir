@@ -1,0 +1,26 @@
+* C:\Users\mistr\eSim-Workspace\gray_to_bin\gray_to_bin.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: 05/14/21 16:01:05
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+U5  Net-_U4-Pad4_ Net-_U4-Pad5_ Net-_U5-Pad3_ d_xor		
+U6  Net-_U5-Pad3_ Net-_U4-Pad6_ Net-_U6-Pad3_ d_xor		
+U4  G2 G1 G0 Net-_U4-Pad4_ Net-_U4-Pad5_ Net-_U4-Pad6_ adc_bridge_3		
+U7  Net-_U4-Pad4_ Net-_U5-Pad3_ Net-_U6-Pad3_ B2 B1 B0 dac_bridge_3		
+R1  B2 GND eSim_R		
+R3  B1 GND eSim_R		
+R2  B0 GND eSim_R		
+v1  G2 GND DC		
+v2  G1 GND DC		
+v3  G0 GND DC		
+U1  G2 plot_v1		
+U2  G1 plot_v1		
+U3  G0 plot_v1		
+U8  B2 plot_v1		
+U10  B1 plot_v1		
+U9  B0 plot_v1		
+
+.end
